@@ -1,0 +1,36 @@
+Bench Paged Write
+  page_bytes: 10000, num_pages:   200 ... VERIFIED
+  page_bytes:  1024, num_pages: 10000 ... lat:  1.067 ±  0.018 ms, bw:  154 ±    3 Gbps (77%), rate: 18.746 ± 0.314 Mpps (per domain:  9.373 Mpps)
+  page_bytes:  4096, num_pages: 10000 ... lat:  3.580 ±  0.022 ms, bw:  183 ±    1 Gbps (92%), rate:  5.587 ± 0.034 Mpps (per domain:  2.794 Mpps)
+  page_bytes:  8192, num_pages: 10000 ... lat:  7.109 ±  0.013 ms, bw:  184 ±    0 Gbps (92%), rate:  2.813 ± 0.005 Mpps (per domain:  1.407 Mpps)
+  page_bytes: 16384, num_pages: 10000 ... lat: 14.196 ±  0.053 ms, bw:  185 ±    1 Gbps (92%), rate:  1.409 ± 0.005 Mpps (per domain:  0.704 Mpps)
+  page_bytes: 32768, num_pages: 10000 ... lat: 28.362 ±  0.059 ms, bw:  185 ±    0 Gbps (92%), rate:  0.705 ± 0.001 Mpps (per domain:  0.353 Mpps)
+  page_bytes: 65536, num_pages: 10000 ... lat: 56.698 ±  0.080 ms, bw:  185 ±    0 Gbps (92%), rate:  0.353 ± 0.000 Mpps (per domain:  0.176 Mpps)
+  page_bytes:  1024, num_pages:   100 ... lat:  0.023 ±  0.001 ms, bw:   73 ±    2 Gbps (36%), rate:  8.881 ± 0.249 Mpps (per domain:  4.441 Mpps)
+  page_bytes:  4096, num_pages:   100 ... lat:  0.049 ±  0.001 ms, bw:  134 ±    2 Gbps (67%), rate:  4.082 ± 0.075 Mpps (per domain:  2.041 Mpps)
+  page_bytes:  8192, num_pages:   100 ... lat:  0.084 ±  0.003 ms, bw:  156 ±    5 Gbps (78%), rate:  2.380 ± 0.079 Mpps (per domain:  1.190 Mpps)
+  page_bytes: 16384, num_pages:   100 ... lat:  0.154 ±  0.003 ms, bw:  171 ±    3 Gbps (85%), rate:  1.302 ± 0.023 Mpps (per domain:  0.651 Mpps)
+  page_bytes: 32768, num_pages:   100 ... lat:  0.295 ±  0.001 ms, bw:  178 ±    1 Gbps (89%), rate:  0.678 ± 0.003 Mpps (per domain:  0.339 Mpps)
+  page_bytes: 65536, num_pages:   100 ... lat:  0.578 ±  0.002 ms, bw:  181 ±    1 Gbps (91%), rate:  0.346 ± 0.001 Mpps (per domain:  0.173 Mpps)
+Bench Single Write
+  bytes:    10000 ... VERIFIED
+  bytes:     1024 ... lat:  0.007 ±  0.000 ms, bw:    1 ±    0 Gbps ( 1%)
+  bytes:     2048 ... lat:  0.007 ±  0.000 ms, bw:    2 ±    0 Gbps ( 2%)
+  bytes:     4096 ... lat:  0.007 ±  0.000 ms, bw:    4 ±    0 Gbps ( 4%)
+  bytes:     8192 ... lat:  0.008 ±  0.000 ms, bw:    8 ±    0 Gbps ( 8%)
+  bytes:    16384 ... lat:  0.008 ±  0.000 ms, bw:   15 ±    0 Gbps (15%)
+  bytes:    32768 ... lat:  0.010 ±  0.000 ms, bw:   27 ±    0 Gbps (27%)
+  bytes:    65536 ... lat:  0.013 ±  0.000 ms, bw:   41 ±    0 Gbps (41%)
+  bytes:   131072 ... lat:  0.019 ±  0.000 ms, bw:   56 ±    1 Gbps (56%)
+  bytes:   262144 ... lat:  0.030 ±  0.000 ms, bw:   71 ±    0 Gbps (71%)
+  bytes:   524288 ... lat:  0.052 ±  0.000 ms, bw:   80 ±    0 Gbps (80%)
+  bytes:  1048576 ... lat:  0.099 ±  0.002 ms, bw:   85 ±    2 Gbps (85%)
+  bytes:  2097152 ... lat:  0.189 ±  0.002 ms, bw:   89 ±    1 Gbps (89%)
+  bytes:  4194304 ... lat:  0.370 ±  0.001 ms, bw:   91 ±    0 Gbps (91%)
+  bytes:  8388608 ... lat:  0.732 ±  0.001 ms, bw:   92 ±    0 Gbps (92%)
+  bytes: 16777216 ... lat:  1.458 ±  0.003 ms, bw:   92 ±    0 Gbps (92%)
+  bytes: 33554432 ... lat:  2.908 ±  0.003 ms, bw:   92 ±    0 Gbps (92%)
+  bytes: 67108864 ... lat:  5.809 ±  0.011 ms, bw:   92 ±    0 Gbps (92%)
+Bench Imm Write
+  Imm VERIFIED ...  lat: 5.592 ± 0.259 µs
+Done!

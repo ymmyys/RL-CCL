@@ -1,0 +1,8 @@
+=== CLIENT on 112 ===
+Topology:
+  GPU: 0, NUMA: 0, Worker CPU:  0, UVM CPU:  1, NICs: mlx5_0        
+  GPU: 1, NUMA: 1, Worker CPU: 32, UVM CPU: 33, NICs: mlx5_2        
+Initialized TransferEngine. num_nets=2, nets_per_gpu=1, link_speed=80Gbps
+Registering memory... cpu cuda:0 cuda:1
+Bench Paged Write
+  page_bytes: 10000, num_pages:   200 ...

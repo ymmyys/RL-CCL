@@ -1,0 +1,94 @@
+diff --git a/fabric-lib/src/topo.rs b/fabric-lib/src/topo.rs
+index 2c84fad..20a2416 100644
+--- a/fabric-lib/src/topo.rs
++++ b/fabric-lib/src/topo.rs
+@@ -464,12 +464,14 @@ fn get_visible_domains() -> Vec<DomainInfo> {
+         return efa_domains.into_iter().map(DomainInfo::Efa).collect();
+     }
+ 
+-    // Then try Verbs
++    // Then try Verbs — skip DOWN ports (e.g. BF-3 port0 disabled, port1 Active).
+     let Ok(verbs_domains) = VerbsDeviceList::get_all_devices() else {
+         return Vec::new();
+     };
+     (0..verbs_domains.num_devices)
+-        .map(|i| DomainInfo::Verbs(VerbsDeviceInfo::new(verbs_domains.clone(), i)))
++        .map(|i| VerbsDeviceInfo::new(verbs_domains.clone(), i))
++        .filter(|info| info.is_port_active())
++        .map(DomainInfo::Verbs)
+         .collect()
+ }
+ 
+diff --git a/fabric-lib/src/verbs/verbs_devinfo.rs b/fabric-lib/src/verbs/verbs_devinfo.rs
+index 63936b8..e084c80 100644
+--- a/fabric-lib/src/verbs/verbs_devinfo.rs
++++ b/fabric-lib/src/verbs/verbs_devinfo.rs
+@@ -43,14 +43,33 @@ pub struct VerbsDeviceInfo {
+ 
+ impl VerbsDeviceInfo {
+     pub fn new(device_list: Arc<VerbsDeviceList>, device_index: usize) -> Self {
+-        // TODO: port_num
+-        // TODO: gid_index
+-        Self { device_list, device_index, port_num: 1, gid_index: 0 }
++        // Prefer RoCE v2 routable GID (matches NCCL_IB_GID_INDEX=3 on this cluster).
++        // Override with FABRIC_GID_INDEX if needed.
++        let gid_index = std::env::var("FABRIC_GID_INDEX")
++            .ok()
++            .and_then(|s| s.parse().ok())
++            .unwrap_or(3);
++        Self { device_list, device_index, port_num: 1, gid_index }
+     }
+ 
+     pub fn device(&self) -> *mut ibv_device {
+         unsafe { *self.device_list.list.add(self.device_index) }
+     }
++
++    /// True if the verbs port is ACTIVE (sysfs state == 4).
++    pub fn is_port_active(&self) -> bool {
++        let path = format!(
++            "{}/ports/{}/state",
++            unsafe {
++                CStr::from_ptr((*self.device()).ibdev_path.as_ptr()).to_string_lossy()
++            },
++            self.port_num
++        );
++        match std::fs::read_to_string(path) {
++            Ok(content) => content.trim().starts_with("4:"),
++            Err(_) => false,
++        }
++    }
+ }
+ 
+ impl RdmaDomainInfo for VerbsDeviceInfo {
+diff --git a/rust/cuda-lib/src/cumem.rs b/rust/cuda-lib/src/cumem.rs
+index 0903a87..05fb453 100644
+--- a/rust/cuda-lib/src/cumem.rs
++++ b/rust/cuda-lib/src/cumem.rs
+@@ -68,7 +68,8 @@ impl CUMemAlloc {
+         let mut access_desc =
+             unsafe { std::mem::zeroed::<cuda_sys::CUmemAccessDesc>() };
+         access_desc.location.type_ = cuda_sys::CU_MEM_LOCATION_TYPE_DEVICE;
+-        access_desc.location.id = device_id.0 as i32;
++        // CUDA 13.x: id moved into anonymous union (bindgen: __bindgen_anon_1)
++        access_desc.location.__bindgen_anon_1.id = device_id.0 as i32;
+         access_desc.flags = cuda_sys::CU_MEM_ACCESS_FLAGS_PROT_READWRITE;
+         cuda_check!(cuda_sys::cuMemSetAccess(ptr, alloc.size(), &access_desc, 1,))?;
+ 
+@@ -106,7 +107,7 @@ impl CUMemAlloc {
+         let mut access_desc =
+             unsafe { std::mem::zeroed::<cuda_sys::CUmemAccessDesc>() };
+         access_desc.location.type_ = cuda_sys::CU_MEM_LOCATION_TYPE_DEVICE;
+-        access_desc.location.id = mapping.handle.device_id.0 as i32;
++        access_desc.location.__bindgen_anon_1.id = mapping.handle.device_id.0 as i32;
+         access_desc.flags = cuda_sys::CU_MEM_ACCESS_FLAGS_PROT_READWRITE;
+         cuda_check!(cuda_sys::cuMemSetAccess(
+             mapping.handle.ptr,
+@@ -170,7 +171,7 @@ impl CUMemAllocHandle {
+         let mut props = unsafe { std::mem::zeroed::<cuda_sys::CUmemAllocationProp>() };
+         props.type_ = cuda_sys::CU_MEM_ALLOCATION_TYPE_PINNED;
+         props.location.type_ = cuda_sys::CU_MEM_LOCATION_TYPE_DEVICE;
+-        props.location.id = device_id.0 as i32;
++        props.location.__bindgen_anon_1.id = device_id.0 as i32;
+         props.requestedHandleTypes = match handle_kind {
+             CUMemHandleKind::Local => cuda_sys::CU_MEM_HANDLE_TYPE_NONE,
+             CUMemHandleKind::FileDescriptor => {

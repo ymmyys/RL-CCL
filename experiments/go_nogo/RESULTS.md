@@ -40,3 +40,7 @@ SIZE_GB=2 ITERS=5 bash experiments/go_nogo/run_go_nogo.sh
 ## Note on fabric-lib
 This go/no-go measures the **injection-byte** gap with NCCL stand-ins for the two communication structures.
 Native `fabric-lib` (`pplx-garden`) still needs libfabric + GDRCopy (+ preferably their Docker image) before timing/parallelism claims; CX-7 + CUDA 13.3 already satisfy the hard NIC/CUDA gates.
+
+## fabric-debug follow-up (same day)
+No-sudo build of fabric-lib succeeded; 112→113 Paged Write peak **185 Gbps** (92% of 2×100G).
+See `FABRIC_BUILD.md` and `results/fabric_debug_20260724_082638/`. Cluster patches in `patches/pplx-garden-cx7-roce.patch`.
