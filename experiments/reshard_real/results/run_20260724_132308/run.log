@@ -1,0 +1,33 @@
+[rank0] W=15231233024 buckets=61
+[rank3]:[W724 13:23:14.743209935 ProcessGroupNCCL.cpp:4051] Warning: [PG ID 0 PG GUID 0(default_pg) Rank 3] An unbatched P2P op (send/recv) was called on this ProcessGroup with size 4.  In eager initialization mode, unbatched P2P ops are treated as independent collective ops, and are thus serialized with all other ops on this ProcessGroup, including other P2P ops. To avoid serialization, either create additional independent ProcessGroups for the P2P ops or use batched P2P ops. You can squash this warning by setting the environment variable TORCH_NCCL_SHOW_EAGER_INIT_P2P_SERIALIZATION_WARNING to false. (function operator())
+[rank2]:[W724 13:23:14.743249346 ProcessGroupNCCL.cpp:4051] Warning: [PG ID 0 PG GUID 0(default_pg) Rank 2] An unbatched P2P op (send/recv) was called on this ProcessGroup with size 4.  In eager initialization mode, unbatched P2P ops are treated as independent collective ops, and are thus serialized with all other ops on this ProcessGroup, including other P2P ops. To avoid serialization, either create additional independent ProcessGroups for the P2P ops or use batched P2P ops. You can squash this warning by setting the environment variable TORCH_NCCL_SHOW_EAGER_INIT_P2P_SERIALIZATION_WARNING to false. (function operator())
+[rank1]:[W724 13:23:18.016296192 ProcessGroupNCCL.cpp:4051] Warning: [PG ID 0 PG GUID 0(default_pg) Rank 1] An unbatched P2P op (send/recv) was called on this ProcessGroup with size 4.  In eager initialization mode, unbatched P2P ops are treated as independent collective ops, and are thus serialized with all other ops on this ProcessGroup, including other P2P ops. To avoid serialization, either create additional independent ProcessGroups for the P2P ops or use batched P2P ops. You can squash this warning by setting the environment variable TORCH_NCCL_SHOW_EAGER_INIT_P2P_SERIALIZATION_WARNING to false. (function operator())
+[rank0]:[W724 13:23:18.016317358 ProcessGroupNCCL.cpp:4051] Warning: [PG ID 0 PG GUID 0(default_pg) Rank 0] An unbatched P2P op (send/recv) was called on this ProcessGroup with size 4.  In eager initialization mode, unbatched P2P ops are treated as independent collective ops, and are thus serialized with all other ops on this ProcessGroup, including other P2P ops. To avoid serialization, either create additional independent ProcessGroups for the P2P ops or use batched P2P ops. You can squash this warning by setting the environment variable TORCH_NCCL_SHOW_EAGER_INIT_P2P_SERIALIZATION_WARNING to false. (function operator())
+[rank2]:[W724 13:23:19.338430806 ProcessGroupNCCL.cpp:4051] Warning: [PG ID 0 PG GUID 0(default_pg) Rank 2] An unbatched P2P op (send/recv) was called on this ProcessGroup with size 4.  In eager initialization mode, unbatched P2P ops are treated as independent collective ops, and are thus serialized with all other ops on this ProcessGroup, including other P2P ops. To avoid serialization, either create additional independent ProcessGroups for the P2P ops or use batched P2P ops. You can squash this warning by setting the environment variable TORCH_NCCL_SHOW_EAGER_INIT_P2P_SERIALIZATION_WARNING to false. (function operator())
+[rank3]:[W724 13:23:19.608721554 ProcessGroupNCCL.cpp:4051] Warning: [PG ID 0 PG GUID 0(default_pg) Rank 3] An unbatched P2P op (send/recv) was called on this ProcessGroup with size 4.  In eager initialization mode, unbatched P2P ops are treated as independent collective ops, and are thus serialized with all other ops on this ProcessGroup, including other P2P ops. To avoid serialization, either create additional independent ProcessGroups for the P2P ops or use batched P2P ops. You can squash this warning by setting the environment variable TORCH_NCCL_SHOW_EAGER_INIT_P2P_SERIALIZATION_WARNING to false. (function operator())
+[iter 0] mode=A wall=2.700s xmit=16.130GB
+[iter 0] mode=B wall=3.422s xmit=32.265GB
+[iter 0] mode=C wall=1.892s xmit=16.123GB
+[iter 0] mode=D wall=1.450s xmit=16.136GB
+[iter 1] mode=A wall=2.086s xmit=16.130GB
+[iter 1] mode=B wall=3.422s xmit=32.266GB
+[iter 1] mode=C wall=1.789s xmit=16.123GB
+[iter 1] mode=D wall=1.889s xmit=16.135GB
+[iter 2] mode=A wall=2.398s xmit=16.130GB
+[iter 2] mode=B wall=3.367s xmit=32.266GB
+[iter 2] mode=C wall=1.976s xmit=16.123GB
+[iter 2] mode=D wall=1.473s xmit=16.136GB
+[iter 3] mode=A wall=2.392s xmit=16.130GB
+[iter 3] mode=B wall=3.658s xmit=32.263GB
+[iter 3] mode=C wall=2.082s xmit=16.123GB
+[iter 3] mode=D wall=2.105s xmit=16.136GB
+[iter 4] mode=A wall=2.274s xmit=16.130GB
+[iter 4] mode=B wall=3.502s xmit=32.263GB
+[iter 4] mode=C wall=1.945s xmit=16.124GB
+[iter 4] mode=D wall=1.460s xmit=16.138GB
+MODE A: wall=2.372±0.225s  112_egress=16.130GB (1.059×W)
+MODE B: wall=3.474±0.113s  112_egress=32.265GB (2.118×W)
+MODE C: wall=1.937±0.108s  112_egress=16.123GB (1.059×W)
+MODE D: wall=1.676±0.303s  112_egress=16.136GB (1.059×W)
+wrote /home/xiajinyi25/ymy/RL-CCL/experiments/reshard_real/results/run_20260724_132308/summary.json
+mpirun_rc=0

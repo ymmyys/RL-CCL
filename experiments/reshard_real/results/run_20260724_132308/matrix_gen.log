@@ -1,0 +1,70 @@
+=== traffic matrix OK ===
+W = 15231233024 B (14.1852 GiB)
+shard/rank held = 7615820800 B
+norm (replicated) = 408576 B
+tensors = 397
+send by owner0 = 7615820800 B
+send by owner1 = 7615412224 B
+buckets = 61 (target ~256 MiB)
+  bucket[0] owner=0 nbytes=262429696 n_tensors=11
+  bucket[1] owner=0 nbytes=233064960 n_tensors=8
+  bucket[2] owner=0 nbytes=233064960 n_tensors=8
+  bucket[3] owner=0 nbytes=233064960 n_tensors=8
+  bucket[4] owner=0 nbytes=233064960 n_tensors=8
+  bucket[5] owner=0 nbytes=233064960 n_tensors=8
+  bucket[6] owner=0 nbytes=233064960 n_tensors=8
+  bucket[7] owner=0 nbytes=233064960 n_tensors=8
+  bucket[8] owner=0 nbytes=233064960 n_tensors=8
+  bucket[9] owner=0 nbytes=233064960 n_tensors=8
+  bucket[10] owner=0 nbytes=233064960 n_tensors=8
+  bucket[11] owner=0 nbytes=233064960 n_tensors=8
+  bucket[12] owner=0 nbytes=233064960 n_tensors=8
+  bucket[13] owner=0 nbytes=233064960 n_tensors=8
+  bucket[14] owner=0 nbytes=233064960 n_tensors=8
+  bucket[15] owner=0 nbytes=233064960 n_tensors=8
+  bucket[16] owner=0 nbytes=233064960 n_tensors=8
+  bucket[17] owner=0 nbytes=233064960 n_tensors=8
+  bucket[18] owner=0 nbytes=233064960 n_tensors=8
+  bucket[19] owner=0 nbytes=233064960 n_tensors=8
+  bucket[20] owner=0 nbytes=233064960 n_tensors=8
+  bucket[21] owner=0 nbytes=233064960 n_tensors=8
+  bucket[22] owner=0 nbytes=233064960 n_tensors=8
+  bucket[23] owner=0 nbytes=233064960 n_tensors=8
+  bucket[24] owner=0 nbytes=233064960 n_tensors=8
+  bucket[25] owner=0 nbytes=233064960 n_tensors=8
+  bucket[26] owner=0 nbytes=233064960 n_tensors=8
+  bucket[27] owner=0 nbytes=203700224 n_tensors=5
+  bucket[28] owner=0 nbytes=544997376 n_tensors=1
+  bucket[29] owner=0 nbytes=544997376 n_tensors=1
+  bucket[30] owner=0 nbytes=7168 n_tensors=1
+  bucket[31] owner=1 nbytes=262415360 n_tensors=9
+  bucket[32] owner=1 nbytes=233050624 n_tensors=6
+  bucket[33] owner=1 nbytes=233050624 n_tensors=6
+  bucket[34] owner=1 nbytes=233050624 n_tensors=6
+  bucket[35] owner=1 nbytes=233050624 n_tensors=6
+  bucket[36] owner=1 nbytes=233050624 n_tensors=6
+  bucket[37] owner=1 nbytes=233050624 n_tensors=6
+  bucket[38] owner=1 nbytes=233050624 n_tensors=6
+  bucket[39] owner=1 nbytes=233050624 n_tensors=6
+  bucket[40] owner=1 nbytes=233050624 n_tensors=6
+  bucket[41] owner=1 nbytes=233050624 n_tensors=6
+  bucket[42] owner=1 nbytes=233050624 n_tensors=6
+  bucket[43] owner=1 nbytes=233050624 n_tensors=6
+  bucket[44] owner=1 nbytes=233050624 n_tensors=6
+  bucket[45] owner=1 nbytes=233050624 n_tensors=6
+  bucket[46] owner=1 nbytes=233050624 n_tensors=6
+  bucket[47] owner=1 nbytes=233050624 n_tensors=6
+  bucket[48] owner=1 nbytes=233050624 n_tensors=6
+  bucket[49] owner=1 nbytes=233050624 n_tensors=6
+  bucket[50] owner=1 nbytes=233050624 n_tensors=6
+  bucket[51] owner=1 nbytes=233050624 n_tensors=6
+  bucket[52] owner=1 nbytes=233050624 n_tensors=6
+  bucket[53] owner=1 nbytes=233050624 n_tensors=6
+  bucket[54] owner=1 nbytes=233050624 n_tensors=6
+  bucket[55] owner=1 nbytes=233050624 n_tensors=6
+  bucket[56] owner=1 nbytes=233050624 n_tensors=6
+  bucket[57] owner=1 nbytes=233050624 n_tensors=6
+  bucket[58] owner=1 nbytes=203685888 n_tensors=3
+  bucket[59] owner=1 nbytes=544997376 n_tensors=1
+  bucket[60] owner=1 nbytes=544997376 n_tensors=1
+wrote traffic_matrix.json
