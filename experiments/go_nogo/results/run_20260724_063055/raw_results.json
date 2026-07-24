@@ -1,0 +1,148 @@
+{
+  "payload_bytes": 2147483648,
+  "payload_gib": 2.0,
+  "iters": 5,
+  "warmup": 2,
+  "world_size": 3,
+  "n_infer": 2,
+  "dtype": "fp16",
+  "hca": "mlx5_1",
+  "ranks": [
+    [
+      {
+        "mode": "broadcast",
+        "rank": 0,
+        "world_size": 3,
+        "host": "xfusion-2",
+        "hca": "mlx5_1",
+        "payload_bytes": 2147483648,
+        "iters": 5,
+        "wall_s": 0.9344581351615489,
+        "wall_s_per_iter": 0.18689162703230977,
+        "ib_delta": {
+          "mlx5_1": {
+            "xmit_bytes": 11359952412,
+            "rcv_bytes": 19753352,
+            "xmit_packets": 10600559,
+            "rcv_packets": 183289
+          }
+        },
+        "xmit_bytes": 11359952412,
+        "rcv_bytes": 19753352
+      },
+      {
+        "mode": "p2p",
+        "rank": 0,
+        "world_size": 3,
+        "host": "xfusion-2",
+        "hca": "mlx5_1",
+        "payload_bytes": 2147483648,
+        "iters": 5,
+        "wall_s": 1.8636577120050788,
+        "wall_s_per_iter": 0.37273154240101575,
+        "ib_delta": {
+          "mlx5_1": {
+            "xmit_bytes": 22731690636,
+            "rcv_bytes": 66839904,
+            "xmit_packets": 21285765,
+            "rcv_packets": 591001
+          }
+        },
+        "xmit_bytes": 22731690636,
+        "rcv_bytes": 66839904
+      }
+    ],
+    [
+      {
+        "mode": "broadcast",
+        "rank": 1,
+        "world_size": 3,
+        "host": "xfusion-3",
+        "hca": "mlx5_1",
+        "payload_bytes": 2147483648,
+        "iters": 5,
+        "wall_s": 0.9344648970291018,
+        "wall_s_per_iter": 0.18689297940582036,
+        "ib_delta": {
+          "mlx5_1": {
+            "xmit_bytes": 19753356,
+            "rcv_bytes": 11362819612,
+            "xmit_packets": 183289,
+            "rcv_packets": 10641519
+          }
+        },
+        "xmit_bytes": 19753356,
+        "rcv_bytes": 11362819612
+      },
+      {
+        "mode": "p2p",
+        "rank": 1,
+        "world_size": 3,
+        "host": "xfusion-3",
+        "hca": "mlx5_1",
+        "payload_bytes": 2147483648,
+        "iters": 5,
+        "wall_s": 1.86364652402699,
+        "wall_s_per_iter": 0.372729304805398,
+        "ib_delta": {
+          "mlx5_1": {
+            "xmit_bytes": 66839908,
+            "rcv_bytes": 22754628236,
+            "xmit_packets": 591001,
+            "rcv_packets": 21613445
+          }
+        },
+        "xmit_bytes": 66839908,
+        "rcv_bytes": 22754628236
+      }
+    ],
+    [
+      {
+        "mode": "broadcast",
+        "rank": 2,
+        "world_size": 3,
+        "host": "xfusion-3",
+        "hca": "mlx5_1",
+        "payload_bytes": 2147483648,
+        "iters": 5,
+        "wall_s": 0.9344979259185493,
+        "wall_s_per_iter": 0.18689958518370986,
+        "ib_delta": {
+          "mlx5_1": {
+            "xmit_bytes": 19753356,
+            "rcv_bytes": 11362819612,
+            "xmit_packets": 183289,
+            "rcv_packets": 10641519
+          }
+        },
+        "xmit_bytes": 19753356,
+        "rcv_bytes": 11362819612
+      },
+      {
+        "mode": "p2p",
+        "rank": 2,
+        "world_size": 3,
+        "host": "xfusion-3",
+        "hca": "mlx5_1",
+        "payload_bytes": 2147483648,
+        "iters": 5,
+        "wall_s": 1.8636178383603692,
+        "wall_s_per_iter": 0.3727235676720738,
+        "ib_delta": {
+          "mlx5_1": {
+            "xmit_bytes": 66839908,
+            "rcv_bytes": 22754628236,
+            "xmit_packets": 591001,
+            "rcv_packets": 21613445
+          }
+        },
+        "xmit_bytes": 66839908,
+        "rcv_bytes": 22754628236
+      }
+    ]
+  ],
+  "lower_bound": {
+    "with_relay_bytes_per_iter": 2147483648,
+    "p2p_naive_bytes_per_iter": 4294967296
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "W_bytes": 2147483648,
+  "N_infer": 2,
+  "iters": 5,
+  "rows": [
+    {
+      "mode": "broadcast",
+      "train_host": "xfusion-2",
+      "train_xmit_GB_total": 11.359952412,
+      "train_xmit_GB_per_iter": 2.2719904824,
+      "W_GB": 2.147483648,
+      "N": 2,
+      "lb_own_GB": 2.147483648,
+      "lb_opt_GB": 2.147483648,
+      "gap_vs_own": 0.05797801278531556,
+      "gap_vs_opt": 0.05797801278531556,
+      "wall_s_per_iter": 0.18689162703230977,
+      "infer_rcv": [
+        {
+          "rank": 1,
+          "host": "xfusion-3",
+          "rcv_GB_per_iter": 2.2725639224000003,
+          "xmit_GB_per_iter": 0.0039506712
+        },
+        {
+          "rank": 2,
+          "host": "xfusion-3",
+          "rcv_GB_per_iter": 2.2725639224000003,
+          "xmit_GB_per_iter": 0.0039506712
+        }
+      ]
+    },
+    {
+      "mode": "p2p",
+      "train_host": "xfusion-2",
+      "train_xmit_GB_total": 22.731690636,
+      "train_xmit_GB_per_iter": 4.546338127199999,
+      "W_GB": 2.147483648,
+      "N": 2,
+      "lb_own_GB": 4.294967296,
+      "lb_opt_GB": 2.147483648,
+      "gap_vs_own": 0.05852683242410417,
+      "gap_vs_opt": 1.1170536648482083,
+      "wall_s_per_iter": 0.37273154240101575,
+      "infer_rcv": [
+        {
+          "rank": 1,
+          "host": "xfusion-3",
+          "rcv_GB_per_iter": 4.5509256472,
+          "xmit_GB_per_iter": 0.0133679816
+        },
+        {
+          "rank": 2,
+          "host": "xfusion-3",
+          "rcv_GB_per_iter": 4.5509256472,
+          "xmit_GB_per_iter": 0.0133679816
+        }
+      ]
+    }
+  ],
+  "structural": {
+    "bcast_xmit_over_W": 1.0579780127853156,
+    "p2p_xmit_over_W": 2.117053664848208,
+    "p2p_over_bcast": 2.001037487796828,
+    "expected_N": 2
+  },
+  "verdict": "GO",
+  "reason": "P2P train egress 111.7% above relay lower bound (>50%)",
+  "decision_rule": "gap_vs_opt = train_xmit/W - 1; <20% NO-GO, >50% GO"
+}

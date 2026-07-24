@@ -1,0 +1,6 @@
+[submodule "checkpoint-engine"]
+	path = checkpoint-engine
+	url = https://github.com/MoonshotAI/checkpoint-engine.git
+[submodule "pplx-garden"]
+	path = pplx-garden
+	url = https://github.com/perplexityai/pplx-garden.git
