@@ -1,0 +1,24 @@
+{
+  "W_GB": 14.185,
+  "chunks": 8,
+  "tau_s": 0.165,
+  "fluid_cut_lb_s": 0.613,
+  "trials": [
+    {
+      "K": 4,
+      "status": "infeasible",
+      "solve_s": 0.03
+    },
+    {
+      "K": 5,
+      "status": "feasible",
+      "solve_s": 0.84
+    }
+  ],
+  "optimal": {
+    "epochs": 5,
+    "makespan_s": 0.8250000000000001,
+    "cross_gb": 17.731
+  },
+  "total_solve_s": 0.88
+}
