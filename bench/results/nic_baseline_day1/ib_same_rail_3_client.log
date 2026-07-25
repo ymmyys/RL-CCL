@@ -1,0 +1,26 @@
+Disabling dynamic polling
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_3
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using Enhanced Reorder      : OFF
+ TX depth        : 20
+ CQ Moderation   : 1
+ CQE Poll Batch  : 16
+ Mtu             : 1024[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x04e5 PSN 0x7903d4 RKey 0x23fd00 VAddr 0x007fac54ebe000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:05
+ remote address: LID 0000 QPN 0x107a PSN 0xb89ce0 RKey 0x23ff00 VAddr 0x007f34f0978000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:06
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    20               92.44              92.44  		     0.001377
+---------------------------------------------------------------------------------------

@@ -1,0 +1,57 @@
+{
+  "ib_write_bw_Gbps": {
+    "cross_rail_1to3": 92.53,
+    "same_rail_1": 92.5,
+    "same_rail_3": 92.44
+  },
+  "nccl_broadcast_W": {
+    "size": 15231233024,
+    "time_us": 1629381.0,
+    "algbw_GBs": 9.35,
+    "busbw_GBs": 9.35
+  },
+  "nccl_broadcast_sweep": [
+    {
+      "size": 67108864,
+      "time_us": 8498.91,
+      "algbw_GBs": 7.9,
+      "busbw_GBs": 7.9
+    },
+    {
+      "size": 134217728,
+      "time_us": 17707.4,
+      "algbw_GBs": 7.58,
+      "busbw_GBs": 7.58
+    },
+    {
+      "size": 268435456,
+      "time_us": 24030.6,
+      "algbw_GBs": 11.17,
+      "busbw_GBs": 11.17
+    },
+    {
+      "size": 536870912,
+      "time_us": 58584.7,
+      "algbw_GBs": 9.16,
+      "busbw_GBs": 9.16
+    },
+    {
+      "size": 1073741824,
+      "time_us": 111945.0,
+      "algbw_GBs": 9.59,
+      "busbw_GBs": 9.59
+    },
+    {
+      "size": 2147483648,
+      "time_us": 226583.0,
+      "algbw_GBs": 9.48,
+      "busbw_GBs": 9.48
+    },
+    {
+      "size": 4294967296,
+      "time_us": 450896.0,
+      "algbw_GBs": 9.53,
+      "busbw_GBs": 9.53
+    }
+  ]
+}

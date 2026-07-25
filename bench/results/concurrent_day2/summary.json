@@ -1,0 +1,118 @@
+{
+  "W_bytes": 4294967296,
+  "host": "xfusion-2",
+  "nccl_env": {
+    "NCCL_PROTO": "Simple",
+    "NCCL_ALGO": "Ring",
+    "NCCL_IB_GID_INDEX": "3",
+    "NCCL_SOCKET_IFNAME": "bond0"
+  },
+  "rows": [
+    {
+      "G": 1,
+      "NCCL_MAX_NCHANNELS": null,
+      "payload_bytes": 4294967296,
+      "shard_bytes": 4294967296,
+      "wall_mean_s": 0.3750802755355835,
+      "wall_std_s": 0.0009196973510409819,
+      "goodput_GBs": 11.450794872823273,
+      "train_egress_bytes_mean": 4543887360.0,
+      "train_egress_over_payload": 1.0579562187194824,
+      "walls": [
+        0.37490901350975037,
+        0.3737766444683075,
+        0.37487462162971497,
+        0.3762369155883789,
+        0.37560418248176575
+      ],
+      "goodput_rel_G1": 1.0,
+      "attenuation_vs_G1": 0.0
+    },
+    {
+      "G": 2,
+      "NCCL_MAX_NCHANNELS": null,
+      "payload_bytes": 4294967296,
+      "shard_bytes": 2147483648,
+      "wall_mean_s": 0.41049463748931886,
+      "wall_std_s": 0.00526629186547378,
+      "goodput_GBs": 10.462907194766352,
+      "train_egress_bytes_mean": 4550493696.0,
+      "train_egress_over_payload": 1.0594943761825562,
+      "walls": [
+        0.4069497883319855,
+        0.40702515840530396,
+        0.4144253134727478,
+        0.417786568403244,
+        0.406286358833313
+      ],
+      "goodput_rel_G1": 0.913727589304606,
+      "attenuation_vs_G1": 0.08627241069539404
+    },
+    {
+      "G": 4,
+      "NCCL_MAX_NCHANNELS": null,
+      "payload_bytes": 4294967296,
+      "shard_bytes": 1073741824,
+      "wall_mean_s": 0.4110144555568695,
+      "wall_std_s": 0.003271234834949996,
+      "goodput_GBs": 10.449674550207474,
+      "train_egress_bytes_mean": 4550294016.0,
+      "train_egress_over_payload": 1.0594478845596313,
+      "walls": [
+        0.40870922803878784,
+        0.40706080198287964,
+        0.4143315851688385,
+        0.4106786549091339,
+        0.41429200768470764
+      ],
+      "goodput_rel_G1": 0.912571980047271,
+      "attenuation_vs_G1": 0.08742801995272897
+    },
+    {
+      "G": 8,
+      "NCCL_MAX_NCHANNELS": null,
+      "payload_bytes": 4294967296,
+      "shard_bytes": 536870912,
+      "wall_mean_s": 0.3932485282421112,
+      "wall_std_s": 0.002938020233426764,
+      "goodput_GBs": 10.92176317912554,
+      "train_egress_bytes_mean": 4548033024.0,
+      "train_egress_over_payload": 1.058921456336975,
+      "walls": [
+        0.39623990654945374,
+        0.3965834677219391,
+        0.391993910074234,
+        0.39081886410713196,
+        0.39060649275779724
+      ],
+      "goodput_rel_G1": 0.9537995659189293,
+      "attenuation_vs_G1": 0.04620043408107066
+    },
+    {
+      "G": 16,
+      "NCCL_MAX_NCHANNELS": null,
+      "payload_bytes": 4294967296,
+      "shard_bytes": 268435456,
+      "wall_mean_s": 0.3852552533149719,
+      "wall_std_s": 0.004720290104601432,
+      "goodput_GBs": 11.14836789127072,
+      "train_egress_bytes_mean": 4546690048.0,
+      "train_egress_over_payload": 1.0586087703704834,
+      "walls": [
+        0.39144057035446167,
+        0.3831576108932495,
+        0.38174358010292053,
+        0.3890884518623352,
+        0.3808460533618927
+      ],
+      "goodput_rel_G1": 0.9735889966669198,
+      "attenuation_vs_G1": 0.02641100333308022
+    }
+  ],
+  "go_nogo": {
+    "None": {
+      "G8_attenuation": 0.04620043408107066,
+      "pass": true
+    }
+  }
+}

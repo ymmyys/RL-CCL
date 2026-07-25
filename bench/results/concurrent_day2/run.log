@@ -1,0 +1,121 @@
+NCCL version 2.28.9+cuda12.9
+G=1 nch=None iter=0 wall=0.3749s local_xmit=4.544GB
+G=1 nch=None iter=1 wall=0.3738s local_xmit=4.544GB
+G=1 nch=None iter=2 wall=0.3749s local_xmit=4.544GB
+G=1 nch=None iter=3 wall=0.3762s local_xmit=4.544GB
+G=1 nch=None iter=4 wall=0.3756s local_xmit=4.544GB
+{
+  "G": 1,
+  "NCCL_MAX_NCHANNELS": null,
+  "payload_bytes": 4294967296,
+  "shard_bytes": 4294967296,
+  "wall_mean_s": 0.3750802755355835,
+  "wall_std_s": 0.0009196973510409819,
+  "goodput_GBs": 11.450794872823273,
+  "train_egress_bytes_mean": 4543887360.0,
+  "train_egress_over_payload": 1.0579562187194824,
+  "walls": [
+    0.37490901350975037,
+    0.3737766444683075,
+    0.37487462162971497,
+    0.3762369155883789,
+    0.37560418248176575
+  ]
+}
+/home/xiajinyi25/Megatron_test/conda_env/lib/python3.12/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  return func(*args, **kwargs)
+NCCL version 2.28.9+cuda12.9
+G=2 nch=None iter=0 wall=0.4069s local_xmit=4.551GB
+G=2 nch=None iter=1 wall=0.4070s local_xmit=4.550GB
+G=2 nch=None iter=2 wall=0.4144s local_xmit=4.551GB
+G=2 nch=None iter=3 wall=0.4178s local_xmit=4.552GB
+G=2 nch=None iter=4 wall=0.4063s local_xmit=4.549GB
+{
+  "G": 2,
+  "NCCL_MAX_NCHANNELS": null,
+  "payload_bytes": 4294967296,
+  "shard_bytes": 2147483648,
+  "wall_mean_s": 0.41049463748931886,
+  "wall_std_s": 0.00526629186547378,
+  "goodput_GBs": 10.462907194766352,
+  "train_egress_bytes_mean": 4550493696.0,
+  "train_egress_over_payload": 1.0594943761825562,
+  "walls": [
+    0.4069497883319855,
+    0.40702515840530396,
+    0.4144253134727478,
+    0.417786568403244,
+    0.406286358833313
+  ]
+}
+G=4 nch=None iter=0 wall=0.4087s local_xmit=4.551GB
+G=4 nch=None iter=1 wall=0.4071s local_xmit=4.550GB
+G=4 nch=None iter=2 wall=0.4143s local_xmit=4.550GB
+G=4 nch=None iter=3 wall=0.4107s local_xmit=4.551GB
+G=4 nch=None iter=4 wall=0.4143s local_xmit=4.550GB
+{
+  "G": 4,
+  "NCCL_MAX_NCHANNELS": null,
+  "payload_bytes": 4294967296,
+  "shard_bytes": 1073741824,
+  "wall_mean_s": 0.4110144555568695,
+  "wall_std_s": 0.003271234834949996,
+  "goodput_GBs": 10.449674550207474,
+  "train_egress_bytes_mean": 4550294016.0,
+  "train_egress_over_payload": 1.0594478845596313,
+  "walls": [
+    0.40870922803878784,
+    0.40706080198287964,
+    0.4143315851688385,
+    0.4106786549091339,
+    0.41429200768470764
+  ]
+}
+G=8 nch=None iter=0 wall=0.3962s local_xmit=4.548GB
+G=8 nch=None iter=1 wall=0.3966s local_xmit=4.549GB
+G=8 nch=None iter=2 wall=0.3920s local_xmit=4.548GB
+G=8 nch=None iter=3 wall=0.3908s local_xmit=4.548GB
+G=8 nch=None iter=4 wall=0.3906s local_xmit=4.548GB
+{
+  "G": 8,
+  "NCCL_MAX_NCHANNELS": null,
+  "payload_bytes": 4294967296,
+  "shard_bytes": 536870912,
+  "wall_mean_s": 0.3932485282421112,
+  "wall_std_s": 0.002938020233426764,
+  "goodput_GBs": 10.92176317912554,
+  "train_egress_bytes_mean": 4548033024.0,
+  "train_egress_over_payload": 1.058921456336975,
+  "walls": [
+    0.39623990654945374,
+    0.3965834677219391,
+    0.391993910074234,
+    0.39081886410713196,
+    0.39060649275779724
+  ]
+}
+G=16 nch=None iter=0 wall=0.3914s local_xmit=4.547GB
+G=16 nch=None iter=1 wall=0.3832s local_xmit=4.547GB
+G=16 nch=None iter=2 wall=0.3817s local_xmit=4.546GB
+G=16 nch=None iter=3 wall=0.3891s local_xmit=4.547GB
+G=16 nch=None iter=4 wall=0.3808s local_xmit=4.546GB
+{
+  "G": 16,
+  "NCCL_MAX_NCHANNELS": null,
+  "payload_bytes": 4294967296,
+  "shard_bytes": 268435456,
+  "wall_mean_s": 0.3852552533149719,
+  "wall_std_s": 0.004720290104601432,
+  "goodput_GBs": 11.14836789127072,
+  "train_egress_bytes_mean": 4546690048.0,
+  "train_egress_over_payload": 1.0586087703704834,
+  "walls": [
+    0.39144057035446167,
+    0.3831576108932495,
+    0.38174358010292053,
+    0.3890884518623352,
+    0.3808460533618927
+  ]
+}
+WROTE /home/xiajinyi25/ymy/RL-CCL/bench/results/concurrent_day2/summary.json
+mpirun_rc=0

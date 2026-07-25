@@ -1,0 +1,301 @@
+OUTDIR=/home/xiajinyi25/ymy/RL-CCL/bench/results/nic_baseline_day1
+date=2026-07-25T06:26:08+00:00
+host_train=xfusion-2 ip=192.168.5.112
+WORKER_LD=/usr/local/cuda/lib64:/home/xiajinyi25/nccl_inject/nccl/build/lib MSG_BYTES=15231233024
+=== ibdev2netdev train ===
+mlx5_0 port 1 ==> ens7f0np0 (Down)
+mlx5_1 port 1 ==> ens7f1np1 (Up)
+mlx5_2 port 1 ==> ens10f0np0 (Down)
+mlx5_3 port 1 ==> ens10f1np1 (Up)
+=== ibdev2netdev infer ===
+mlx5_0 port 1 ==> ens7f0np0 (Down)
+mlx5_1 port 1 ==> ens7f1np1 (Up)
+mlx5_2 port 1 ==> ens10f0np0 (Down)
+mlx5_3 port 1 ==> ens10f1np1 (Up)
+IPs: train mlx5_1=10.99.3.2 (ens7f1np1) mlx5_3=10.99.3.5 (ens10f1np1)
+IPs: infer mlx5_1=10.99.3.3 (ens7f1np1) mlx5_3=10.99.3.6 (ens10f1np1)
+=== ib_write_bw same_rail_1 : 192.168.5.112/mlx5_1 → 192.168.5.113/mlx5_1 (10.99.3.3) ===
+705908
+Conflicting CPU frequency values detected: 800.000000 != 923.083000. CPU Frequency is not max.
+Disabling dynamic polling
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_1
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using Enhanced Reorder      : OFF
+ TX depth        : 20
+ CQ Moderation   : 1
+ CQE Poll Batch  : 16
+ Mtu             : 1024[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x11a83 PSN 0x70bb10 RKey 0x23fd00 VAddr 0x007f7072e03000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:02
+ remote address: LID 0000 QPN 0xd8c4 PSN 0x586968 RKey 0x240000 VAddr 0x007f7a6b64d000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:03
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    20               92.50              92.50  		     0.001378
+---------------------------------------------------------------------------------------
+Disabling dynamic polling
+
+************************************
+* Waiting for client to connect... *
+************************************
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_1
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using Enhanced Reorder      : OFF
+ CQ Moderation   : 1
+ CQE Poll Batch  : 16
+ Mtu             : 1024[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0xd8c4 PSN 0x586968 RKey 0x240000 VAddr 0x007f7a6b64d000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:03
+ remote address: LID 0000 QPN 0x11a83 PSN 0x70bb10 RKey 0x23fd00 VAddr 0x007f7072e03000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:02
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    20               92.50              92.50  		     0.001378
+---------------------------------------------------------------------------------------
+ 8388608    20               92.50              92.50  		     0.001378
+=== ib_write_bw cross_rail_1to3 : 192.168.5.112/mlx5_1 → 192.168.5.113/mlx5_3 (10.99.3.6) ===
+706013
+Conflicting CPU frequency values detected: 800.000000 != 1500.000000. CPU Frequency is not max.
+Disabling dynamic polling
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_1
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using Enhanced Reorder      : OFF
+ TX depth        : 20
+ CQ Moderation   : 1
+ CQE Poll Batch  : 16
+ Mtu             : 1024[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x11a84 PSN 0xd6e15e RKey 0x23fd00 VAddr 0x007efc11ec6000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:02
+ remote address: LID 0000 QPN 0x1079 PSN 0xf4a552 RKey 0x23ff00 VAddr 0x007f7380c2e000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:06
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    20               92.53              92.53  		     0.001379
+---------------------------------------------------------------------------------------
+Disabling dynamic polling
+
+************************************
+* Waiting for client to connect... *
+************************************
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_3
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using Enhanced Reorder      : OFF
+ CQ Moderation   : 1
+ CQE Poll Batch  : 16
+ Mtu             : 1024[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x1079 PSN 0xf4a552 RKey 0x23ff00 VAddr 0x007f7380c2e000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:06
+ remote address: LID 0000 QPN 0x11a84 PSN 0xd6e15e RKey 0x23fd00 VAddr 0x007efc11ec6000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:02
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    20               92.53              92.53  		     0.001379
+---------------------------------------------------------------------------------------
+ 8388608    20               92.53              92.53  		     0.001379
+=== ib_write_bw same_rail_3 : 192.168.5.112/mlx5_3 → 192.168.5.113/mlx5_3 (10.99.3.6) ===
+706111
+Conflicting CPU frequency values detected: 800.000000 != 2700.000000. CPU Frequency is not max.
+Disabling dynamic polling
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_3
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using Enhanced Reorder      : OFF
+ TX depth        : 20
+ CQ Moderation   : 1
+ CQE Poll Batch  : 16
+ Mtu             : 1024[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x04e5 PSN 0x7903d4 RKey 0x23fd00 VAddr 0x007fac54ebe000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:05
+ remote address: LID 0000 QPN 0x107a PSN 0xb89ce0 RKey 0x23ff00 VAddr 0x007f34f0978000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:06
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    20               92.44              92.44  		     0.001377
+---------------------------------------------------------------------------------------
+Disabling dynamic polling
+
+************************************
+* Waiting for client to connect... *
+************************************
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_3
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using Enhanced Reorder      : OFF
+ CQ Moderation   : 1
+ CQE Poll Batch  : 16
+ Mtu             : 1024[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x107a PSN 0xb89ce0 RKey 0x23ff00 VAddr 0x007f34f0978000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:06
+ remote address: LID 0000 QPN 0x04e5 PSN 0x7903d4 RKey 0x23fd00 VAddr 0x007fac54ebe000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:10:99:03:05
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    20               92.44              92.44  		     0.001377
+---------------------------------------------------------------------------------------
+ 8388608    20               92.44              92.44  		     0.001377
+=== nccl-tests broadcast_perf 4GPU (W-sized) ===
+# nccl-tests version 2.18.5 nccl-headers=23004 nccl-library=23007
+# Collective test starting: broadcast_perf
+# nThread 1 nGpus 1 minBytes 15231233024 maxBytes 15231233024 step: 2(factor) warmup iters: 2 iters: 5 agg iters: 1 validation: 0 graph: 0 unalign: 0
+#
+# Using devices
+#  Rank  0 Group  0 Pid 2066590 on  xfusion-2 device  0 [0000:4f:00] NVIDIA A100-PCIE-40GB
+#  Rank  1 Group  0 Pid 2066591 on  xfusion-2 device  1 [0000:cc:00] NVIDIA A100-PCIE-40GB
+#  Rank  2 Group  0 Pid 706171 on  xfusion-3 device  0 [0000:4f:00] NVIDIA A100-PCIE-40GB
+#  Rank  3 Group  0 Pid 706172 on  xfusion-3 device  1 [0000:cc:00] NVIDIA A100-PCIE-40GB
+NCCL version 2.30.7+cuda13.3
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw  #wrong     time   algbw   busbw  #wrong 
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)             (us)  (GB/s)  (GB/s)         
+ 15231233024    3807808256     float    none       0  1629381    9.35    9.35    N/A  1597180    9.54    9.54    N/A
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 9.4421 
+#
+# Collective test concluded: broadcast_perf
+#
+
+=== nccl-tests broadcast_perf sweep 64MiB..4GiB ===
+# nccl-tests version 2.18.5 nccl-headers=23004 nccl-library=23007
+# Collective test starting: broadcast_perf
+# nThread 1 nGpus 1 minBytes 67108864 maxBytes 4294967296 step: 2(factor) warmup iters: 5 iters: 20 agg iters: 1 validation: 0 graph: 0 unalign: 0
+#
+# Using devices
+#  Rank  0 Group  0 Pid 2067059 on  xfusion-2 device  0 [0000:4f:00] NVIDIA A100-PCIE-40GB
+#  Rank  1 Group  0 Pid 2067060 on  xfusion-2 device  1 [0000:cc:00] NVIDIA A100-PCIE-40GB
+#  Rank  2 Group  0 Pid 706379 on  xfusion-3 device  0 [0000:4f:00] NVIDIA A100-PCIE-40GB
+#  Rank  3 Group  0 Pid 706380 on  xfusion-3 device  1 [0000:cc:00] NVIDIA A100-PCIE-40GB
+NCCL version 2.30.7+cuda13.3
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw  #wrong     time   algbw   busbw  #wrong 
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)             (us)  (GB/s)  (GB/s)         
+    67108864      16777216     float    none       0  8498.91    7.90    7.90    N/A  5849.31   11.47   11.47    N/A
+   134217728      33554432     float    none       0  17707.4    7.58    7.58    N/A  18274.9    7.34    7.34    N/A
+   268435456      67108864     float    none       0  24030.6   11.17   11.17    N/A  30679.8    8.75    8.75    N/A
+   536870912     134217728     float    none       0  58584.7    9.16    9.16    N/A  52171.1   10.29   10.29    N/A
+  1073741824     268435456     float    none       0   111945    9.59    9.59    N/A   132160    8.12    8.12    N/A
+  2147483648     536870912     float    none       0   226583    9.48    9.48    N/A   240663    8.92    8.92    N/A
+  4294967296    1073741824     float    none       0   450896    9.53    9.53    N/A   443542    9.68    9.68    N/A
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 9.21385 
+#
+# Collective test concluded: broadcast_perf
+#
+
+{
+  "ib_write_bw_Gbps": {
+    "cross_rail_1to3": 92.53,
+    "same_rail_1": 92.5,
+    "same_rail_3": 92.44
+  },
+  "nccl_broadcast_W": {
+    "size": 15231233024,
+    "time_us": 1629381.0,
+    "algbw_GBs": 9.35,
+    "busbw_GBs": 9.35
+  },
+  "nccl_broadcast_sweep": [
+    {
+      "size": 67108864,
+      "time_us": 8498.91,
+      "algbw_GBs": 7.9,
+      "busbw_GBs": 7.9
+    },
+    {
+      "size": 134217728,
+      "time_us": 17707.4,
+      "algbw_GBs": 7.58,
+      "busbw_GBs": 7.58
+    },
+    {
+      "size": 268435456,
+      "time_us": 24030.6,
+      "algbw_GBs": 11.17,
+      "busbw_GBs": 11.17
+    },
+    {
+      "size": 536870912,
+      "time_us": 58584.7,
+      "algbw_GBs": 9.16,
+      "busbw_GBs": 9.16
+    },
+    {
+      "size": 1073741824,
+      "time_us": 111945.0,
+      "algbw_GBs": 9.59,
+      "busbw_GBs": 9.59
+    },
+    {
+      "size": 2147483648,
+      "time_us": 226583.0,
+      "algbw_GBs": 9.48,
+      "busbw_GBs": 9.48
+    },
+    {
+      "size": 4294967296,
+      "time_us": 450896.0,
+      "algbw_GBs": 9.53,
+      "busbw_GBs": 9.53
+    }
+  ]
+}
+DONE rc_w=0 rc_s=0 baseline=/home/xiajinyi25/ymy/RL-CCL/bench/results/nic_baseline_day1/baseline.json

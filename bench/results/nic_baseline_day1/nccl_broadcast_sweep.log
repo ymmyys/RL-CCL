@@ -1,0 +1,27 @@
+# nccl-tests version 2.18.5 nccl-headers=23004 nccl-library=23007
+# Collective test starting: broadcast_perf
+# nThread 1 nGpus 1 minBytes 67108864 maxBytes 4294967296 step: 2(factor) warmup iters: 5 iters: 20 agg iters: 1 validation: 0 graph: 0 unalign: 0
+#
+# Using devices
+#  Rank  0 Group  0 Pid 2067059 on  xfusion-2 device  0 [0000:4f:00] NVIDIA A100-PCIE-40GB
+#  Rank  1 Group  0 Pid 2067060 on  xfusion-2 device  1 [0000:cc:00] NVIDIA A100-PCIE-40GB
+#  Rank  2 Group  0 Pid 706379 on  xfusion-3 device  0 [0000:4f:00] NVIDIA A100-PCIE-40GB
+#  Rank  3 Group  0 Pid 706380 on  xfusion-3 device  1 [0000:cc:00] NVIDIA A100-PCIE-40GB
+NCCL version 2.30.7+cuda13.3
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw  #wrong     time   algbw   busbw  #wrong 
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)             (us)  (GB/s)  (GB/s)         
+    67108864      16777216     float    none       0  8498.91    7.90    7.90    N/A  5849.31   11.47   11.47    N/A
+   134217728      33554432     float    none       0  17707.4    7.58    7.58    N/A  18274.9    7.34    7.34    N/A
+   268435456      67108864     float    none       0  24030.6   11.17   11.17    N/A  30679.8    8.75    8.75    N/A
+   536870912     134217728     float    none       0  58584.7    9.16    9.16    N/A  52171.1   10.29   10.29    N/A
+  1073741824     268435456     float    none       0   111945    9.59    9.59    N/A   132160    8.12    8.12    N/A
+  2147483648     536870912     float    none       0   226583    9.48    9.48    N/A   240663    8.92    8.92    N/A
+  4294967296    1073741824     float    none       0   450896    9.53    9.53    N/A   443542    9.68    9.68    N/A
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 9.21385 
+#
+# Collective test concluded: broadcast_perf
+#
+

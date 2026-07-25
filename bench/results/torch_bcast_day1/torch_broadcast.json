@@ -1,0 +1,22 @@
+{
+  "bytes": 15231233024,
+  "wall_mean_s": 1.792756199836731,
+  "wall_std_s": 0.17000779874829916,
+  "algbw_GBs": 8.495986808126577,
+  "busbw_GBs": 8.495986808126577,
+  "walls": [
+    1.4952105283737183,
+    1.9030590057373047,
+    1.8554786443710327,
+    1.8951642513275146,
+    1.8148685693740845
+  ],
+  "stack": "torch+NCCL (same as reshard_real)",
+  "nccl_env": {
+    "NCCL_PROTO": "Simple",
+    "NCCL_ALGO": "Ring",
+    "NCCL_IB_GID_INDEX": "3",
+    "NCCL_IB_HCA": "mlx5_1",
+    "NCCL_SOCKET_IFNAME": "bond0"
+  }
+}
