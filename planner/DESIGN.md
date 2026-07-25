@@ -179,6 +179,45 @@ ForestColl 可复用资产：auxiliary network+maxflow+二分求瓶颈割（改�
 还需补查：veRL/HybridFlow（reshard 语义出处）、MSCCL++、近三月 RL 权重同步新论文
 （方向正热，月度扫描）。
 
+### 6.1 补充竞品（2026-07-25 逐条核实；来源为外部 LLM 分析，引用真假混杂已甄别）
+
+**真实且须进 related work / baseline 的：**
+- **Awex**（[inclusionAI/asystem-awex](https://github.com/inclusionAI/asystem-awex)，蚂蚁）：
+  跨引擎（Megatron/DeepSpeed→vLLM/SGLang）reshard + 确定性 P2P transfer plan，
+  NCCL/RDMA/shm 三模式，NUMA 亲和 + 全局负载均衡；千卡 10B 权重 1s 内、1T RDMA 6s。
+  **无理论/下界论文**。定位=执行层最强工程竞品，应与 fabric-lib 并列为 P2P plan 类
+  baseline（或至少 related work 正面引用）。
+- **vLLM 原生 weight-transfer API**（[RFC #31848](https://github.com/vllm-project/vllm/issues/31848)、
+  [Native RL APIs 博客 2026-05](https://vllm.ai/blog/2026-05-28-native-rl-apis)、
+  [RFC #11399](https://github.com/vllm-project/vllm/issues/11399)）：四阶段协议 + 可插拔
+  后端（NCCL broadcast/IPC），trainer 与所有推理 worker 组一个 PG 广播。
+  **机会而非威胁**：管道在标准化 = 执行层 commoditize，planner/理论价值上升；
+  且给了我们第三个执行后端选项——把 RMcast planner 实现为 vLLM weight-transfer
+  backend，评估即插即用。
+- **NeMo-RL refit**（[Discussion #1189](https://github.com/NVIDIA-NeMo/RL/discussions/1189)）：
+  MoE 权重传输 10× 优化，"refit"=业界对本问题的又一命名，写 related work 时用作
+  术语锚点。torchforge（PyTorch RL 库）博客明确点名"70B×16 副本=数百 GB 移动"痛点
+  ——motivation 引用素材。
+- **稀疏 delta 家族**（[PULSE 2602.03839](https://arxiv.org/abs/2602.03839)、
+  [SparseRL-Sync 2605.07330](https://arxiv.org/abs/2605.07330)、SparrowRL 2602.11456）：
+  RL 权重更新经 BF16 cast 后 ~99% 稀疏，通信可削 100×。**正交但必须正面处理**：
+  claim 限定为"对仍需全量/稠密同步的 regime（首轮分发、churn 后全量、MoE 路由变更、
+  精度切换），且调度结构对稀疏 payload 同样适用（payload 大小是我们模型的参数 W）"。
+- **Etha**：vLLM 官方博客提及"Etha 风格 sharded weight transfer"，仓库未能索引到；
+  作为 P2P plan 类的又一实例随 vLLM 博客引用即可。
+
+**查无实据的（不引、不慌）：**
+- "PyTorch M-to-N RFC #181061"与"NVIDIA/nccl-extensions 的 NCCL M2N"：搜索无法
+  证实该 issue 号、该仓库与"M2N"术语（外部 LLM 可能编造/口误）。真实趋势是上面的
+  vLLM RFC 家族。若未来 NVIDIA/PyTorch 真的产品化同语义，冲击的是执行层故事，
+  不动摇"原语+下界+多项式 planner+churn"的理论 claim——但窗口确实在收窄，
+  坐实了"2026 内挂 arXiv 占位"的时间表。
+
+**对 baseline 清单的修订**：checkpoint-engine、fabric-lib、模式 D、TACCL/TE-CCL
+之外，增补 **Awex**（至少 related work 正面对比，条件允许则实测其 P2P plan 的
+egress/NIC 分布——预期与 fabric-lib 同为 N×W 类）与 **vLLM 原生 NCCL 后端**
+（预期与 checkpoint-engine 同为 broadcast 类）。
+
 ---
 
 ## 7. 开放问题（按风险排序）
