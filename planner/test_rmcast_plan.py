@@ -119,6 +119,92 @@ def test_errors():
         pass
 
 
+# ---------------------------------------------------------- v1 stripe tests
+
+def test_fanout_rho0_all_direct():
+    """rho=0 everywhere: no relay possible -> pure direct, egress = N*W."""
+    from rmcast_plan import demo_fanout
+    topo, src, dst = demo_fanout(n_targets=4, rho=0.0)
+    p = plan(topo, src, dst)
+    assert p.structure == "stripe"  # direct serves live in the stripe builder
+    assert not p.bcasts, "no relay groups allowed at rho=0"
+    assert p.source_egress({"hsrc"}) == 4 * W
+
+
+def test_fanout_rho1_hits_lower_bound():
+    """Full relay budget, dual-NIC source: KR regime B1 (u_S between d and
+    N*d). The optimum MIXES direct + relay, so egress may exceed W — the
+    contract is hitting the fluid LB (ingress-bound: W/d = 1.228s)."""
+    from rmcast_plan import demo_fanout
+    topo, src, dst = demo_fanout(n_targets=4, rho=1.0)
+    p = plan(topo, src, dst)
+    lb = W / (1 << 30) / 11.55  # ingress cut of a 1-NIC target host
+    assert abs(p.predicted_s - lb) / lb < 0.01, (p.predicted_s, lb)
+    # sanity: never worse than pure-direct egress
+    assert p.source_egress({"hsrc"}) < 4 * W
+
+
+def test_b2_regime_egress_is_W():
+    """KR regime B2 (source slower than every constraint: single-NIC source,
+    u_S <= min{d, u(I)/N}): every byte leaves the source exactly once."""
+    from rmcast_plan import Host, Topology
+    topo = Topology()
+    topo.add_host(Host("hsrc", [0, 1], {"n0": 11.55}, {0: "n0", 1: "n0"},
+                       intra_bw=20.0))
+    dst = {}
+    for i in range(4):
+        g = 2 + i
+        topo.add_host(Host(f"ht{i}", [g], {"nic0": 11.55}, {g: "nic0"},
+                           relay_frac=1.0))
+        dst[g] = [(0, W)]
+    src = {0: [(0, W // 2)], 1: [(W // 2, W)]}
+    p = plan(topo, src, dst, structure="stripe")
+    eg = p.source_egress({"hsrc"})
+    assert abs(eg - W) / W < 0.01, eg / W  # mode-D trait, inherited at scale
+
+
+def test_fanout_structure_switches_with_rho():
+    """Cost model must pick stripe when relay pays, and rank it monotonically."""
+    from rmcast_plan import demo_fanout
+    topo, src, dst = demo_fanout(n_targets=4, rho=0.5)
+    star = plan(topo, src, dst, structure="star")
+    auto = plan(topo, src, dst)
+    assert auto.structure == "stripe"
+    assert auto.predicted_s < star.predicted_s
+
+
+def test_stripe_hop2_depends_on_hop1():
+    """Every relay bcast must reference its feeding hop1 send (pipelining)."""
+    from rmcast_plan import demo_fanout
+    topo, src, dst = demo_fanout(n_targets=4, rho=1.0)
+    p = plan(topo, src, dst, structure="stripe")
+    assert p.bcasts, "expected relay groups at rho=1"
+    for op in p.bcasts:
+        assert 0 <= op.after_send < len(p.sends)
+        feed = p.sends[op.after_send]
+        assert feed.dst == op.root, "bcast root must be the hop1 receiver"
+
+
+def test_rho0_host_is_never_pivot():
+    """Mixed rho: the rho=0 host must be served directly, never relay."""
+    from rmcast_plan import Host, Topology
+    topo = Topology()
+    topo.add_host(Host("hsrc", [0, 1], {"n1": 11.55, "n3": 11.55},
+                       {0: "n1", 1: "n3"}, intra_bw=20.0))
+    dst = {}
+    for i, rho in enumerate((1.0, 1.0, 0.0)):
+        g = 2 + i
+        topo.add_host(Host(f"ht{i}", [g], {"nic0": 11.55}, {g: "nic0"},
+                           relay_frac=rho))
+        dst[g] = [(0, W)]
+    src = {0: [(0, W // 2)], 1: [(W // 2, W)]}
+    p = plan(topo, src, dst, structure="stripe")
+    for op in p.bcasts:
+        root_host = topo.host_of(op.root)
+        assert topo.hosts[root_host].relay_frac > 0, "rho=0 host used as pivot"
+    assert p.relay_egress.get("ht2", 0) == 0
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):

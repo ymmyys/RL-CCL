@@ -1,0 +1,288 @@
+[
+  {
+    "scenario": "fanout N=2 rho=1.0",
+    "lb_s": 1.228,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 1.228,
+      "egress_xW": 2.0
+    },
+    "mode-d": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 1.228,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=4 rho=1.0",
+    "lb_s": 1.228,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 2.456,
+      "egress_xW": 4.0
+    },
+    "mode-d": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 1.228,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=8 rho=1.0",
+    "lb_s": 1.228,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 4.913,
+      "egress_xW": 8.0
+    },
+    "mode-d": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 1.228,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=16 rho=1.0",
+    "lb_s": 1.228,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 9.825,
+      "egress_xW": 16.0
+    },
+    "mode-d": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 1.228,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=8 rho=1.0",
+    "lb_s": 1.228,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 4.913,
+      "egress_xW": 8.0
+    },
+    "mode-d": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 1.228,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=8 rho=0.5",
+    "lb_s": 1.638,
+    "ce-serial": {
+      "t_s": 2.456,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 4.913,
+      "egress_xW": 8.0
+    },
+    "mode-d": {
+      "t_s": 2.456,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 1.638,
+      "egress_xW": 2.67,
+      "structure": "stripe",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=8 rho=0.2",
+    "lb_s": 2.729,
+    "ce-serial": {
+      "t_s": 6.141,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 4.913,
+      "egress_xW": 8.0
+    },
+    "mode-d": {
+      "t_s": 6.141,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 2.729,
+      "egress_xW": 4.44,
+      "structure": "stripe",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=8 rho=0.0",
+    "lb_s": 4.913,
+    "ce-serial": {
+      "t_s": "inf",
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 4.913,
+      "egress_xW": 8.0
+    },
+    "mode-d": {
+      "t_s": "inf",
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 4.913,
+      "egress_xW": 8.0,
+      "structure": "stripe",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=4 fat-src(4NIC)",
+    "lb_s": 1.228,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 2.456,
+      "egress_xW": 4.0
+    },
+    "mode-d": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 1.228,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=2 2NIC-tgt",
+    "lb_s": 0.614,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 1.228,
+      "egress_xW": 2.0
+    },
+    "mode-d": {
+      "t_s": 0.614,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 0.614,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "fanout N=8 2NIC-tgt",
+    "lb_s": 0.614,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 4.913,
+      "egress_xW": 8.0
+    },
+    "mode-d": {
+      "t_s": 0.614,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 0.614,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "tp2->tp4 x2 inst",
+    "lb_s": 0.614,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 1.228,
+      "egress_xW": 2.0
+    },
+    "mode-d": {
+      "t_s": 0.614,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 0.614,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  },
+  {
+    "scenario": "tp2->tp4 x4 inst",
+    "lb_s": 0.614,
+    "ce-serial": {
+      "t_s": 1.228,
+      "egress_xW": 1.0
+    },
+    "p2p-direct": {
+      "t_s": 2.456,
+      "egress_xW": 4.0
+    },
+    "mode-d": {
+      "t_s": 0.614,
+      "egress_xW": 1.0
+    },
+    "planner": {
+      "t_s": 0.614,
+      "egress_xW": 1.0,
+      "structure": "star",
+      "vs_lb": 1.0
+    }
+  }
+]
