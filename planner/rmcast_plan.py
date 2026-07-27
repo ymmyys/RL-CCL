@@ -93,6 +93,11 @@ class BcastOp:
     after_send: int = -1  # index into Plan.sends this bcast streams from
     #   (chunk-pipelined: starts as chunks of the hop1 send arrive — mode C's
     #    receive-all-then-forward serialization is explicitly NOT the contract)
+    fanout: str = "ring"  # "ring": NCCL group broadcast — chain relay, every
+    #   non-terminal member host forwards (star plan charges remote[:-1]).
+    #   "star": root sends point-to-point to each member — ONLY the root pays
+    #   relay egress. The stripe plan's rho accounting assumes star; executing
+    #   its bcasts as NCCL rings would force rho=0 members to forward.
 
 
 @dataclass
@@ -100,6 +105,10 @@ class CopyOp:
     src: int
     dsts: tuple[int, ...]
     nbytes: int
+    # intra-host fanout of data `src` first has to RECEIVE via that op
+    # (-1 = src is a holder, data already resident, copy can run immediately)
+    after_send: int = -1
+    after_bcast: int = -1
 
 
 @dataclass
@@ -358,10 +367,12 @@ def _plan_stripe(topo: Topology, classes: list[DemandClass]) -> Plan | None:
             nic_egress[key] += nbytes
             host_ingress[h] += nbytes
             dst_gpu = leader(h)
+            send_idx = len(sends)
             sends.append(SendOp(g, dst_gpu, nbytes, key[1], (cls,), stripe))
             mates = [d for d in remote_by_host[h] if d != dst_gpu]
             if mates:
-                copies.append(CopyOp(dst_gpu, tuple(mates), nbytes))
+                copies.append(CopyOp(dst_gpu, tuple(mates), nbytes,
+                                     after_send=send_idx))
 
         # ---- closed-form split (KR Case C/D, fleet-wide water level)
         budgets = {h: topo.hosts[h].relay_frac * topo.hosts[h].egress_bw()
@@ -399,23 +410,30 @@ def _plan_stripe(topo: Topology, classes: list[DemandClass]) -> Plan | None:
             send_idx = len(sends)
             sends.append(SendOp(g, pv_gpu, part, key[1], (idx,), s_i))
 
+            # hop2: pivot fans the stripe out to the other N-1 hosts as a STAR
+            # (root sends p2p to each member) — only the pivot pays relay egress,
+            # so a rho=0 member never forwards. Encoded as ONE BcastOp; the
+            # per-host movement is NOT re-emitted as SendOps (that double-counted
+            # the wire and left the hop2 bytes off the egress books).
             others = [h for h in targets if h != ph]
-            relay_egress[ph] += part * len(others)   # hop2: star from pivot
+            relay_egress[ph] += part * len(others)
             pv_nic = topo.hosts[ph].gpu_nic[pv_gpu]
+            bcast_idx = len(bcasts)
+            member_leaders = [pv_gpu]
             for h in others:
                 host_ingress[h] += part
                 dst_gpu = leader(h)
-                op = SendOp(pv_gpu, dst_gpu, part, pv_nic, (idx,), s_i)
-                sends.append(op)
+                member_leaders.append(dst_gpu)
                 mates = [d for d in remote_by_host[h] if d != dst_gpu]
-                if mates:
-                    copies.append(CopyOp(dst_gpu, tuple(mates), part))
-            bcasts.append(BcastOp(pv_gpu, tuple([pv_gpu] +
-                          [leader(h) for h in others]), part, pv_nic,
-                          (idx,), s_i, send_idx))
+                if mates:  # intra-host fanout on the receiving side, after bcast
+                    copies.append(CopyOp(dst_gpu, tuple(mates), part,
+                                         after_bcast=bcast_idx))
+            bcasts.append(BcastOp(pv_gpu, tuple(member_leaders), part, pv_nic,
+                                  (idx,), s_i, send_idx, fanout="star"))
             mates = [d for d in remote_by_host[ph] if d != pv_gpu]
-            if mates:
-                copies.append(CopyOp(pv_gpu, tuple(mates), part))
+            if mates:  # pivot's own host fanout, after it receives via hop1
+                copies.append(CopyOp(pv_gpu, tuple(mates), part,
+                                     after_send=send_idx))
 
         if direct_bytes > 0:
             for h in targets:
